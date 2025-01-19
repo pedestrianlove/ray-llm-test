@@ -1,0 +1,12 @@
+
+applications:
+  - name: TutorialLLMApp
+    import_path: test_llm:app
+    runtime_env:
+      working_dir: "https://github.com/pedestrianlove/ray-llm-test/archive/HEAD.zip"
+      pip:
+        - vllm
+    args:
+      model: "NousResearch/Meta-Llama-3-8B-Instruct"
+      tensor-parallel-size: 2
+      accelerator: "GPU"
