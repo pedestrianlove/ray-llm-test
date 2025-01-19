@@ -1,9 +1,9 @@
 
 applications:
   - name: TutorialLLMApp
-    import_path: test_llm:app
+    import_path: test_llm:build_app
     runtime_env:
-      working_dir: "https://github.com/pedestrianlove/ray-llm-test/archive/HEAD.zip"
+      working_dir: "https://github.com/pedestrianlove/ray-llm-test/archive/refs/heads/main.zip"
       pip:
         - vllm
     args:
