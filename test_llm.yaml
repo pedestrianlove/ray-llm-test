@@ -3,10 +3,12 @@ applications:
   - name: TutorialLLMApp
     import_path: test_llm:build_app
     runtime_env:
-      working_dir: "https://github.com/pedestrianlove/ray-llm-test/archive/refs/heads/main.zip"
+      env_vars:
+        PIP_EXTRA_INDEX_URL: "https://sasha0552.github.io/pascal-pkgs-ci/"
       pip:
-        - vllm
+        - "vllm-pascal==0.6.4.post1+cu124" 
+      working_dir: "https://github.com/pedestrianlove/ray-llm-test/archive/refs/heads/main.zip"
     args:
-      model: "NousResearch/Meta-Llama-3-8B-Instruct"
+      model: "mistralai/Mistral-Nemo-Instruct-2407"
       tensor-parallel-size: 2
       accelerator: "GPU"

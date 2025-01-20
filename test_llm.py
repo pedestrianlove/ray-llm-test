@@ -4,6 +4,7 @@ import logging
 from fastapi import FastAPI
 from starlette.requests import Request
 from starlette.responses import StreamingResponse, JSONResponse
+from huggingface_hub import login
 
 from ray import serve
 
@@ -45,6 +46,9 @@ class VLLMDeployment:
         chat_template: Optional[str] = None,
     ):
         logger.info(f"Starting with engine args: {engine_args}")
+
+        login(token="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")
+
         self.openai_serving_chat = None
         self.engine_args = engine_args
         self.response_role = response_role
@@ -129,6 +133,7 @@ def build_app(cli_args: Dict[str, str]) -> serve.Application:
     parsed_args = parse_vllm_args(cli_args)
     engine_args = AsyncEngineArgs.from_cli_args(parsed_args)
     engine_args.worker_use_ray = True
+    # engine_args.dtype = "float16"
 
     tp = engine_args.tensor_parallel_size
     logger.info(f"Tensor parallelism = {tp}")
