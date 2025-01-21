@@ -5,10 +5,13 @@ applications:
     runtime_env:
       env_vars:
         PIP_EXTRA_INDEX_URL: "https://sasha0552.github.io/pascal-pkgs-ci/"
+        NCCL_DEBUG: "TRACE"
+        # NCCL_P2P_DISABLE: "1"
       pip:
         - "vllm-pascal==0.6.4.post1+cu124" 
       working_dir: "https://github.com/pedestrianlove/ray-llm-test/archive/refs/heads/main.zip"
     args:
-      model: "mistralai/Mistral-Nemo-Instruct-2407"
+      model: "Qwen/Qwen2.5-7B-Instruct-GPTQ-Int4"
+      quantization: "gptq"
       tensor-parallel-size: 2
       accelerator: "GPU"
